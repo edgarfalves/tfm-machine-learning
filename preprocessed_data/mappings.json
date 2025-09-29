@@ -1,0 +1,61 @@
+{
+    "aplication_name": {
+        "app02": 1
+    },
+    "servico": {
+        "ComunicacaoAPI": 0,
+        "FaturamentoAPI": 1,
+        "NotificacoesAPI": 2,
+        "ComprasAPI": 3,
+        "AgendamentoAPI": 4,
+        "CatalogoAPI": 5,
+        "PagamentoAPI": 6
+    },
+    "metodo": {
+        "CreateOrder": 0,
+        "AnotherMetodo": 1,
+        "GetDetails": 2,
+        "OtherMetodo": 3,
+        "UpdateStatus": 4,
+        "SomeMetodo": 5,
+        "SendNotification": 6
+    },
+    "submetodo": {
+        "adicionarItem": 0,
+        "removerItem": 1,
+        "tipoContacto": 2,
+        "permissoes": 3,
+        "enviarSMS": 4,
+        "PaginacaoFinanciamentos": 5,
+        "reagendar": 6,
+        "carrinho": 7,
+        "enviarConfirmacao": 8,
+        "reembolsar": 9,
+        "notificacoesPush": 10,
+        "detalhesProduto": 11,
+        "cancelar": 12,
+        "finalizar": 13,
+        "OutrosByTema": 14,
+        "consultar": 15,
+        "disponibilidade": 16,
+        "motivos": 17,
+        "listarPedidos": 18,
+        "criarFatura": 19,
+        "autorizar": 20,
+        "master": 21,
+        "enviarEmail": 22
+    },
+    "statuscode": {
+        "201": 0,
+        "400": 1,
+        "500": 2,
+        "404": 3,
+        "200": 4
+    },
+    "method": {
+        "POST": 0,
+        "GET": 1,
+        "DELETE": 2,
+        "PUT": 3
+    }
+}

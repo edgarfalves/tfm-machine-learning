@@ -1,0 +1,1 @@
+{"columns": ["timestamp", "Avg_Temp", "Avg_Rel_Humidity"], "value_column": "Avg_Temp"}
