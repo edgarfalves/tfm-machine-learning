@@ -1,5 +1,3 @@
-pip install -r requirements.txt
-python api.pystreamlit run frontend.py
 ## Introduction
 
 This project provides a modular platform for near real-time anomaly detection and predictive maintenance using machine learning techniques. Designed to handle diverse time-series datasets, the system enables users to upload data, train models, and generate forecasts and anomaly alerts through a web application.
