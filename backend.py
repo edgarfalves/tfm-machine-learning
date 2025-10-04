@@ -19,12 +19,12 @@ except ImportError:
     def process_data_for_lstm(*args, **kwargs):
         raise ImportError("Could not import 'process_data_for_lstm'. Make sure data_preprocessor.py is accessible.")
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(BASE_DIR, "project/db", "models.db")
-LOG_DIR = os.path.join(BASE_DIR, "project/logs")
-DATA_DIR = os.path.join(BASE_DIR, "project/preprocessed_data")
-LSTM_SCRIPT_PATH = os.path.join(BASE_DIR, "project/lstm", "lstm.py")
-MODELS_DIR = os.path.join(BASE_DIR, "project", "trained_models")
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+DB_PATH = os.path.join(BASE_DIR, "db", "models.db")
+LOG_DIR = os.path.join(BASE_DIR, "logs")
+DATA_DIR = os.path.join(BASE_DIR, "preprocessed_data")
+LSTM_SCRIPT_PATH = os.path.join(BASE_DIR, "lstm", "lstm.py")
+MODELS_DIR = os.path.join(BASE_DIR, "trained_models")
 
 
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
