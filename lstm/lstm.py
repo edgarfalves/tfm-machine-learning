@@ -13,6 +13,7 @@ from tensorflow.keras.optimizers import Adagrad
 from sklearn.preprocessing import MinMaxScaler
 import joblib
 import re
+import time
 
 # --- Constants ---
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -82,15 +83,35 @@ def train_lstm(csv_path, mappings_path, model_id, model_path):
         raise ValueError(f"Not enough data to create training samples: need at least {seq_length + FORECAST_HORIZON} rows, got {len(X_scaled)}.")
     model = create_lstm_model((seq_length, X_seq.shape[2] if X_seq.ndim == 3 else X_seq.shape[1]))
     early_stop = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
+    start_time = time.time()
     model.fit(
         X_seq, y_seq,
-        epochs=100,
+        epochs=1000,
         batch_size=16,
         verbose=2,
         validation_split=0.2,
         shuffle=True,
         callbacks=[early_stop]
     )
+    end_time = time.time()
+    train_seconds = end_time - start_time
+    # Calculate MAE and MSE on the training set in original units
+    y_pred = model.predict(X_seq, verbose=0)
+    # Inverse transform predictions and targets
+    # Only the first column (target) is predicted, so reconstruct full feature vector for scaler
+    y_pred_orig = []
+    y_seq_orig = []
+    for i in range(y_pred.shape[0]):
+        for j in range(y_pred.shape[1]):
+            # Use the last input in the sequence for non-target columns
+            last_input = X_seq[i, -1, :].copy()
+            last_input[0] = y_pred[i, j]  # set target
+            y_pred_orig.append(scaler.inverse_transform([last_input])[0][0])
+            last_input[0] = y_seq[i, j]  # set target to true value
+            y_seq_orig.append(scaler.inverse_transform([last_input])[0][0])
+    from sklearn.metrics import mean_absolute_error, mean_squared_error
+    mae = mean_absolute_error(y_seq_orig, y_pred_orig)
+    mse = mean_squared_error(y_seq_orig, y_pred_orig)
     # Save model and scaler
     os.makedirs(model_path, exist_ok=True)
     model.save(os.path.join(model_path, f"model_{model_id}.keras"))
@@ -109,6 +130,10 @@ def train_lstm(csv_path, mappings_path, model_id, model_path):
         json.dump({"columns": list(df.columns), "value_column": value_column}, f)
     # Save last sequence for prediction
     np.save(os.path.join(model_path, "last_sequence.npy"), X_scaled[-seq_length:])
+    print(f"Training time (seconds): {train_seconds:.2f}")
+    print(f"MAE (original units): {mae:.6f}")
+    print(f"MSE (original units): {mse:.6f}")
+    sys.stdout.flush()
 
 # --- Prediction Function ---
 def predict_lstm(model_id, model_path, t1=None, t2=None):
