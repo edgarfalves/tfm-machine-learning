@@ -1,6 +1,6 @@
-## Introduction
-
 This project was carried out as part of a project to obtain a Master's Degree in Computer Engineering at the **Instituto Superior de Engenharia de Lisboa ([ISEL](https://www.isel.pt/))**.
+
+## Introduction
 
 This project provides a modular platform for near real-time anomaly detection and predictive maintenance using machine learning techniques. Designed to handle diverse time-series datasets, the system enables users to upload data, train models, and generate forecasts and anomaly alerts through a web application.
 
