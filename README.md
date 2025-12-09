@@ -1,8 +1,10 @@
 ## Introduction
 
+This project was carried out as part of a project to obtain a Master's Degree in Computer Engineering at the **Instituto Superior de Engenharia de Lisboa ([ISEL](https://www.isel.pt/))**.
+
 This project provides a modular platform for near real-time anomaly detection and predictive maintenance using machine learning techniques. Designed to handle diverse time-series datasets, the system enables users to upload data, train models, and generate forecasts and anomaly alerts through a web application.
 
-Core algorithms include **LSTM**, **GRU**, **ARIMA**, **autoencoders**, and **OCSVM**, implemented with Python, TensorFlow/Keras, and Streamlit. The platform supports flexible configuration of features and thresholds, interactive visualization of results, and easy management of trained models. By combining machine learning with user-centric design, this project empowers organizations to optimize operational efficiency, minimize downtime, and make data-driven decisions for maintenance planning.
+Core algorithms include **LSTM**, **GRU**, **ARIMA**, **Autoencoders**, and **OCSVM**, implemented with Python, TensorFlow/Keras & Scikit-Learn, and Streamlit. The platform supports flexible configuration of features and thresholds, interactive visualization of results, and easy management of trained models. By combining machine learning with user-centric design, this project empowers organizations to optimize operational efficiency, minimize downtime, and make data-driven decisions for maintenance planning.
 
 ## Structure
 
